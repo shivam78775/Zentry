@@ -1,0 +1,407 @@
+@import url("https://fonts.cdnfonts.com/css/general-sans");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #dfdff0;
+  font-family: "General Sans", sans-serif;
+}
+
+@layer base {
+  @font-face {
+    font-family: "circular-web";
+    src: url("/fonts/circularweb-book.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "general";
+    src: url("/fonts/general.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "robert-medium";
+    src: url("/fonts/robert-medium.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "robert-regular";
+    src: url("/fonts/robert-regular.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "zentry";
+    src: url("/fonts/zentry-regular.woff2") format("woff2");
+  }
+}
+
+@layer utilities {
+  .border-hsla {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .nav-hover-btn {
+    position: relative;
+    margin-inline-start: 2.5rem;
+    font-family: "general", sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #f0f6ff;
+    cursor: pointer;
+  }
+
+  .nav-hover-btn::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    transform-origin: bottom right;
+    transform: scaleX(0);
+    background-color: #262626;
+    transition: transform 300ms cubic-bezier(0.65, 0.05, 0.36, 1);
+  }
+
+  .nav-hover-btn:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+
+  .dark .nav-hover-btn::after {
+    background-color: #fff;
+  }
+
+  .floating-nav {
+    background-color: #000;
+    border-radius: 0.5rem; /* matches rounded-lg */
+    border-width: 1px; /* matches border */
+    border-style: solid;
+    border-color: #e5e7eb; /* default Tailwind border color */
+  }
+
+  .absolute-center {
+    @apply absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%];
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .mask-clip-path {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .special-font b {
+    font-family: "Zentry";
+    font-feature-settings: "ss01" on;
+  }
+
+  .hero-heading {
+    @apply uppercase;
+    /* text-5xl should be used in the markup, not with @apply */
+  }
+
+  .about-subtext {
+    @apply absolute w-full -translate-x-1/2 text-center;
+    /* text-lg should be used in the markup, not with @apply */
+    /* max-w-96 should be used in the markup, not with @apply */
+    /* Use bottom-[-80dvh], left-1/2, font-circular-web, md:max-w-[34rem] in markup */
+  }
+
+  .about-image {
+    @apply absolute z-20 h-[60vh] origin-center -translate-x-1/2 overflow-hidden;
+    /* rounded-3xl should be used in the markup, not with @apply */
+    /* w-96 should be used in the markup, not with @apply */
+    /* top-0 should be used in the markup, not with @apply */
+    /* Use left-1/2, md:w-[30vw] in markup */
+  }
+
+  .animated-title {
+    @apply flex flex-col uppercase leading-[.8];
+    /* text-white should be used in the markup, not with @apply */
+    /* gap-1 should be used in the markup, not with @apply */
+    /* Use text-7xl, sm:px-32, md:text-[6rem] in markup */
+  }
+
+  .animated-word {
+    @apply opacity-0;
+    /* font-black should be used in the markup, not with @apply */
+    transform: translate3d(10px, 51px, -60px) rotateY(60deg) rotateX(-40deg);
+    transform-origin: 50% 50% -150px !important;
+    will-change: opacity, transform;
+  }
+
+  .bento-tilt_1 {
+    @apply relative overflow-hidden transition-transform duration-300;
+    /* ease-out should be used in the markup, not with @apply */
+    /* rounded-md should be used in the markup, not with @apply */
+    /* Use border-hsla and col-span-2 in markup */
+  }
+
+  .bento-tilt_2 {
+    @apply relative overflow-hidden transition-transform duration-300;
+    /* ease-out should be used in the markup, not with @apply */
+    /* rounded-md should be used in the markup, not with @apply */
+    /* Use col-span-1 and row-span-1 in markup */
+  }
+
+  .bento-title {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-family: "Zentry", sans-serif;
+    font-size: 2.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .bento-title {
+      font-size: 3.75rem;
+    }
+  }
+
+  .story-img-container {
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    filter: url("#flt_tag");
+  }
+
+  @media (min-width: 768px) {
+    .story-img-container {
+      height: 100dvh;
+    }
+  }
+
+  .story-img-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    clip-path: polygon(4% 0, 83% 21%, 100% 73%, 0% 100%);
+  }
+
+  .story-img-content {
+    @apply absolute w-full h-[50dvh] opacity-100;
+    /* top-16 should be used in the markup, not with @apply */
+    /* left-10 should be used in the markup, not with @apply */
+    /* Use md:h-dvh, md:left-0, md:top-10, lg:left-[-300px], lg:top-[-100px] in markup */
+    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) rotateZ(0) scale(1);
+  }
+
+  .gallery-img-container {
+    @apply overflow-hidden;
+    /* size-64 should be used in the markup, not with @apply */
+    /* Use bg-violet-300 in markup */
+  }
+
+  .gallery-img {
+    @apply size-full;
+    /* Use bg-cover in markup */
+  }
+
+  .gallery-img-4 {
+    /* rounded-lg should be used in the markup, not with @apply */
+    /* Use sm:size-80, md:h-96, md:w-[25rem] in markup */
+  }
+
+  .sword-man-clip-path {
+    clip-path: polygon(16% 0, 89% 15%, 75% 100%, 0 97%);
+  }
+
+  .contact-clip-path-1 {
+    clip-path: polygon(25% 0%, 74% 0, 69% 64%, 34% 73%);
+  }
+
+  .contact-clip-path-2 {
+    clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
+  }
+}
+
+.indicator-line {
+  height: 0.25rem;
+  width: 1px;
+  border-radius: 9999px;
+  background-color: #fff;
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.indicator-line.active {
+  animation: indicator-line 0.5s ease infinite;
+  animation-delay: calc(var(--animation-order) * 0.1s);
+}
+
+@keyframes indicator-line {
+  0% {
+    height: 4px;
+    transform: translateY(-0px);
+  }
+  50% {
+    height: 16px;
+    transform: translateY(-4px);
+  }
+  100% {
+    height: 4px;
+    transform: translateY(-0px);
+  }
+}
+
+.three-body {
+  --uib-size: 35px;
+  --uib-speed: 0.8s;
+  --uib-color: #5d3fd3;
+  position: relative;
+  display: inline-block;
+  height: var(--uib-size);
+  width: var(--uib-size);
+  animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+}
+
+.three-body__dot {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+}
+
+.three-body__dot:after {
+  content: "";
+  position: absolute;
+  height: 0%;
+  width: 100%;
+  padding-bottom: 100%;
+  background-color: var(--uib-color);
+  border-radius: 50%;
+}
+
+.three-body__dot:nth-child(1) {
+  bottom: 5%;
+  left: 0;
+  transform: rotate(60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(1)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite ease-in-out;
+  animation-delay: calc(var(--uib-speed) * -0.3);
+}
+
+.three-body__dot:nth-child(2) {
+  bottom: 5%;
+  right: 0;
+  transform: rotate(-60deg);
+  transform-origin: 50% 85%;
+}
+
+.three-body__dot:nth-child(2)::after {
+  bottom: 0;
+  left: 0;
+  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out;
+}
+
+.three-body__dot:nth-child(3) {
+  bottom: -5%;
+  left: 0;
+  transform: translateX(116.666%);
+}
+
+.three-body__dot:nth-child(3)::after {
+  top: 0;
+  left: 0;
+  animation: wobble2 var(--uib-speed) infinite ease-in-out;
+}
+
+#mini-video-container:hover{
+  opacity: 100;
+  scale: 0.3;
+  transition: all 400ms ease-in;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+#mini-video-container:hover video{
+  border-radius: 25px;
+}
+
+.sr-font{
+  font-family: Zentry, sans-serif;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+#redine-txt{
+  font-family: Zentry, sans-serif;
+  font-weight: 100;
+  font-size: 7rem;
+  line-height: 1.2;
+  margin-bottom: -30px;
+}
+
+.txt-cnt{
+  margin-left: 30px;
+}
+.txt-cnt p{
+  font-family: sans-serif;
+  font-size: 1.2rem;
+}
+.sr-btn{
+  background: #F1FF7E;
+  padding: 5px 15px;
+  border: none;
+  font-family: General;
+  display: flex;
+  gap: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.gmg-txt{
+  font-size: 9rem;
+  line-height: 0;
+  letter-spacing: 3px;
+  font-weight: 100;
+}
+
+@keyframes spin78236 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wobble1 {
+  0%, 100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-66%) scale(0.65);
+    opacity: 0.8;
+  }
+}
+
+@keyframes wobble2 {
+  0%, 100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(66%) scale(0.65);
+    opacity: 0.8;
+  }
+}
